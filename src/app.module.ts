@@ -39,6 +39,15 @@ import { TablesModule } from './tables/tables.module';
     database: process.env.POSTGRES_DB,
     autoLoadEntities: true,
     synchronize: false,
+    ssl: process.env.POSTGRES_SSL === "true",
+      extra: {
+        ssl:
+          process.env.POSTGRES_SSL === "true"
+            ? {
+                rejectUnauthorized: false,
+              }
+            : null,
+      },
   }),
   UserModule,
   SeedModule,
